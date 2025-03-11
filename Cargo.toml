@@ -1,0 +1,26 @@
+[package]
+name = "plustwo-collector"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+eyre = "0.6.12"
+futures = "0.3.31"
+reqwest = { version = "0.12.12", features = ["json"] }
+sqlx = { version = "0.8.3", features = [
+    "chrono",
+    "runtime-tokio",
+    "tls-native-tls",
+    "postgres",
+] }
+tokio = { version = "1.44.0", features = ["macros", "rt-multi-thread"] }
+tokio-tungstenite = { version = "0.26.2", features = ["native-tls", "url"] }
+tracing = "0.1.41"
+tracing-subscriber = "0.3.19"
+twitch_api = { version = "0.7.0", features = [
+    "client",
+    "eventsub",
+    "helix",
+    "hmac",
+    "reqwest",
+] }

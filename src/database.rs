@@ -29,7 +29,7 @@ impl DatabaseClient {
 
         sqlx::query(
             r#"
-            INSERT INTO messages (timestamp, user_id, channel_id, message_kind)
+            INSERT INTO messages (sent_at, user_id, channel_id, message_kind)
                 VALUES ($1, $2, $3, $4)
             "#,
         )

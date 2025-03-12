@@ -1768,6 +1768,7 @@ dependencies = [
  "tokio-stream",
  "tracing",
  "url",
+ "uuid",
 ]
 
 [[package]]
@@ -1849,6 +1850,7 @@ dependencies = [
  "stringprep",
  "thiserror 2.0.12",
  "tracing",
+ "uuid",
  "whoami",
 ]
 
@@ -1887,6 +1889,7 @@ dependencies = [
  "stringprep",
  "thiserror 2.0.12",
  "tracing",
+ "uuid",
  "whoami",
 ]
 
@@ -1912,6 +1915,7 @@ dependencies = [
  "sqlx-core",
  "tracing",
  "url",
+ "uuid",
 ]
 
 [[package]]
@@ -2411,6 +2415,12 @@ name = "utf8_iter"
 version = "1.0.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b6c140620e7ffbb22c2dee59cafe6084a59b5ffc27a8859a5f0d494b5d52b6be"
+
+[[package]]
+name = "uuid"
+version = "1.15.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e0f540e3240398cce6128b64ba83fdbdd86129c16a3aa1a3a252efd66eb3d587"
 
 [[package]]
 name = "valuable"

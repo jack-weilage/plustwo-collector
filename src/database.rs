@@ -1,5 +1,5 @@
 use eyre::{Context, Result};
-use sqlx::{PgPool, postgres::PgPoolOptions};
+use sqlx::{PgPool, postgres::PgPoolOptions, types::Uuid};
 use twitch_api::types::{Timestamp, UserId};
 
 use crate::time::timestamp_to_time;
@@ -24,19 +24,21 @@ impl DatabaseClient {
         user_id: UserId,
         channel_id: UserId,
         kind: MessageKind,
+        unique_id: Uuid,
     ) -> Result<()> {
         tracing::info!("inserting new message into database");
 
         sqlx::query(
             r#"
-            INSERT INTO messages (sent_at, user_id, channel_id, message_kind)
-                VALUES ($1, $2, $3, $4)
+            INSERT INTO messages (sent_at, user_id, channel_id, message_kind, unique_id)
+                VALUES ($1, $2, $3, $4, $5)
             "#,
         )
         .bind(timestamp_to_time(&timestamp)?)
         .bind(user_id.as_str().parse::<i64>()?)
         .bind(channel_id.as_str().parse::<i64>()?)
         .bind(kind)
+        .bind(unique_id)
         .execute(&self.pool)
         .await
         .wrap_err("Failed to insert message")?;

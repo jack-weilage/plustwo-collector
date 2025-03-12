@@ -1,5 +1,8 @@
+use std::str::FromStr;
+
 use database::{DatabaseClient, EventKind, MessageKind};
 use eyre::{Context, Result};
+use sqlx::types::Uuid;
 use twitch::TwitchClient;
 use twitch_api::eventsub::{Event as TwitchEvent, Message, Payload};
 use websocket::WebsocketClient;
@@ -74,6 +77,7 @@ async fn main() -> Result<()> {
                     payload.chatter_user_id,
                     payload.broadcaster_user_id,
                     kind,
+                    Uuid::from_str(payload.message_id.as_str())?,
                 )
                 .await?;
 
